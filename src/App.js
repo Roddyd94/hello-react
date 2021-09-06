@@ -1,18 +1,32 @@
-import logo from "./logo.svg";
-import "./App.css";
+import logo from './logo.svg';
+import './App.css';
+import { Component } from 'react';
+import IterationSample from './IterationSample';
+import LifeCycleSample from './LifeCycleSample';
 
-function App() {
-  const name = "리액!트! ";
-  const style = {
-    backgroundColor: "black",
-    color: "aqua",
-    fontSize: "48px",
-    fontWeight: "bold",
-    padding: 16,
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+class App extends Component {
+  state = {
+    color: '#000000',
   };
-  // return <div>{name === "리액트" && <h1>Hello React!!</h1>}</div>;
-  // return name || "undefined";
-  return <div style={style}>{name}</div>;
+
+  handleClick = () => {
+    this.setState({
+      color: getRandomColor(),
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>랜덤 색상</button>
+        <LifeCycleSample color={this.state.color} />
+      </div>
+    );
+  }
 }
 
 export default App;
